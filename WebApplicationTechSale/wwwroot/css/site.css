@@ -1,0 +1,338 @@
+﻿/*drew code start*/
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+a.auction-link {
+    text-decoration: none;
+    color: #171717;
+}
+
+a.auction-link:hover {
+    color: #5a5a5a;
+}
+
+html {
+    font-size: 14px;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-top: 73px;
+    margin-bottom: 60px;
+    font-family: "Montserrat";
+}
+
+/*pagination styles*/
+
+.pagination > li > a {
+    background-color: white;
+    color: #5A4181;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a {
+    color: white;
+    background-color: #5a5a5a !Important;
+    border: solid 1px #454545 !Important;
+}
+
+.pagination > .active > a:hover {
+    background-color: #4e4e4e !Important;
+    border: solid 1px #212121;
+}
+
+/*card img styles*/
+
+.card-img-top.list-lot {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+    border-bottom: solid 1px #dfdfdf;
+}
+
+.card-img-bottom {
+    border-top: solid 1px #dfdfdf;
+}
+/*drew code end*/
+
+/*===============================================================================*/
+
+/*Media range*/
+@media (min-width: 992px) {
+    .container {
+        max-width: 1900px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/*Common*/
+.btn {
+    border-radius: 1.5rem !important;
+}
+
+.btn-primary {
+    background-color: #ffc795 !important;
+}
+
+li > a.btn:hover {
+    background-color: #ffc795 !important;
+}
+
+/*header*/
+.header-main-menu {
+    font-family: 'Gotham Pro Regular';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+header {
+    padding: 15px 0px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo__shop-title {
+    font-family: 'Gotham Pro Black';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.logo__shop-title span {
+    font-family: 'Gotham Pro Black';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #747474;
+}
+
+ul {
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+.text-dark {
+    font-family: 'Gotham Pro Medium';
+}
+
+li.nav-item > a {
+    border: none;
+    border-radius: 1.5rem !important;
+}
+
+.header-media {
+    display: flex;
+    justify-content: flex-end;
+}
+
+a.media__circle-href {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    margin-left: 19px;
+}
+
+.header-feedback {
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Gotham Pro Medium';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+    text-align: right;
+}
+
+.header-feedback a {
+    margin-right: 11px;
+}
+
+.header-feedback span {
+    margin-right: 9px;
+}
+
+/*Main*/
+.card {
+    border-radius: 1.5rem !important;
+}
+
+.item-card {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.card-header {
+    overflow: hidden;
+    border-radius: 1.5rem !important;
+    background-color: transparent !important;
+}
+
+.card > .list-group:last-child {
+    border-bottom-width: 0;
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.item-card:before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 100px;
+    left: -5px;
+    top: 15px;
+    background: #ffc795;
+    border-radius: 5px;
+}
+
+.item-card-img {
+    overflow: hidden;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+.item-card-img-page {
+    overflow: hidden;
+    border-radius: 1.5rem;
+}
+
+.item-card-checking {
+    overflow: hidden;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.card-footer {
+    overflow: hidden;
+    border-top-left-radius: 1.5rem !important;
+    border-top-right-radius: 1.5rem !important;
+    background-color: transparent !important;
+}
+
+.item-card-title {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    font-family: 'Gotham Pro Light';
+}
+
+.page-link {
+    border-radius: 50px !important;
+}
+
+/*Footer*/
+FOOTER {
+    background-color: #F9FBFE;
+    padding-top: 70px;
+    margin-top: 130px;
+    padding-bottom: 61px;
+}
+
+FOOTER .logo {
+    margin-bottom: 29px;
+}
+
+    footer > div.navbar {
+        flex-direction: column;
+    }
+
+.metka {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.adress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gotham Pro Light';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    color: gray;
+}
+
+.footer-main-menu.navbar a {
+    padding-left: 0;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gotham Pro Medium';
+    font-size: 20px !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: 26px;
+    letter-spacing: 0em;
+    margin-top: 10px;
+}
+
+.footer-media {
+    display: flex;
+    justify-content: center;
+    margin-top: 55px;
+}

@@ -1,0 +1,24 @@
+﻿@using DataAccessLogic.DatabaseModels;
+
+@model SavedList
+
+@{
+    ViewData["Title"] = "Избранное";
+}
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-lg-2">
+    @foreach (Item item in Model.Item)
+    {
+        <div class="col">
+            <div class="card h-100  item-card">
+                <a><img src="@item.PhotoSrc" class="card-img-top item-card-img list-lot " alt="..."></a>
+                <div class="card-body">
+                    <a class="auction-link" asp-action="OpenItem" asp-controller="User" asp-route-id="@item.Id">
+                        <h5 class="card-title">@item.Name</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/fonts.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <section class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-sm-5">
+                        <div class="header-main-menu">
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                <ul class="navbar-nav">
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <li class="nav-item mx-1 my-1">
+                                            <a class="btn btn-lg btn-outline-light " asp-action="UsersList" asp-controller="Admin"><div class="text-dark">Список модераторов</div></a>
+                                        </li>
+                                    }
+                                    else if (User.Identity.IsAuthenticated && User.IsInRole("moderator"))
+                                    {
+                                        <li class="nav-item mx-1 my-1">
+                                            <a class="btn btn-lg btn-outline-light " asp-action="Item" asp-controller="Moderator"><div class="text-dark">Список товаров</div></a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item mx-1 my-1">
+                                            <a class="btn btn-lg btn-outline-light " asp-action="Item" asp-controller="Home"><div class="text-dark">Главная</div></a>
+                                        </li>
+                                    }
+                                </ul>
+                                <ul class="navbar-nav">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="nav-item ms-1 my-1">
+                                            <a id="Personal" class="btn btn-lg btn-outline-light " asp-action="Personal" asp-controller="Account"><div class="text-dark">Личный кабинет</div></a>
+                                        </li>
+                                        if (User.IsInRole("regular user"))
+                                        {
+                                            <li class="nav-item ms-1 my-1">
+                                                <a id="SavedList" class="btn btn-lg btn-outline-primary " asp-action="MySavedList" asp-controller="User"><div class="text-dark">Избранное</div></a>
+                                            </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item ms-1 my-1">
+                                            <a id="Log" class="btn btn-lg btn-outline-light " asp-action="Login" asp-controller="Account"><div class="text-dark">Вход</div></a>
+                                        </li>
+                                        <li class="nav-item ms-1 my-1">
+                                            <a class="btn btn-lg btn-outline-light " asp-action="Register" asp-controller="Account"><div class="text-dark">Регистрация</div></a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <div class="logo__image">
+                                <a href="" class="">
+                                    <img title="Логотип" src="~/images/shop_logo.svg">
+                                </a>
+                            </div>
+                            <div class="logo__shop-title">
+                                <span></span> Диана
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="header-media">
+                            <a href="https://vk.com/" class="media__circle-href">
+                                <img src="~/images/vk_icon.svg">
+                            </a>
+                            <a href="https://instagram.com/" class="media__circle-href">
+                                <img src="~/images/instagram_icon.svg">
+                            </a>
+                            <a href="https://facebook.com/" class="media__circle-href">
+                                <img src="~/images/facebook_icon.svg">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="header-feedback">
+                            <a href="call-icon">
+                                <img src="https://sun9-57.userapi.com/impf/VJi_j2S2C4hUtD5GQPDcB53tRjd4pHaRThgqKA/z8HJqsA7-CU.jpg?size=30x30&quality=90&proxy=1&sign=d8d9c0dcfff10b5d5972422ad52f29bf">
+                            </a>
+                            <span class="phone-number">+7 (8422) 33-33-33</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-md-2" style="margin-bottom: 20px">
+					<div class="logo">
+							<div class="logo__image">
+								<a href="" class="">
+										<img title="Логотип"src="~/images/shop_logo.svg">
+								</a>
+							</div>
+							<div class="logo__shop-title">
+								<span></span> Диана
+							</div>
+					</div>
+                    <hr>
+                    <div class="metka">
+                        <a href="">
+                            <img src="https://sun9-50.userapi.com/impf/rnZ5qiv6nlhizVxPwxUO8sdt3CDfJulDFRlqaA/dZ3kQsIminM.jpg?size=24x27&quality=90&proxy=1&sign=3b4dff3db2c9fec94cee09981ed9f624">
+                        </a>
+                    </div>
+                    <div class="adress">
+                        <span>г. Ульяновск, ул. Ленина,</span>
+                        <span>дом 7, строение 1</span>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-lg-1 d-md-none d-lg-block"> </div>
+                <div class="col-sm-6 col-lg-4 d-none d-md-block">
+                    <h5 class="footer-main-menu__head">Меню</h5>
+                    <div class="footer-main-menu">
+                        <nav class="navbar navbar-expand-md navbar-light">
+                            <ul class="navbar-nav">
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                {
+                                    <li class="nav-item mx-1 my-1">
+                                        <a class="btn btn-lg btn-outline-light " asp-action="UsersList" asp-controller="Admin"><div class="text-dark">Список модераторов</div></a>
+                                    </li>
+                                }
+                                else if (User.Identity.IsAuthenticated && User.IsInRole("moderator"))
+                                {
+                                    <li class="nav-item mx-1 my-1">
+                                        <a class="btn btn-lg btn-outline-light " asp-action="Item" asp-controller="Moderator"><div class="text-dark">Список товаров</div></a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item mx-1 my-1">
+                                        <a class="btn btn-lg btn-outline-light " asp-action="Item" asp-controller="Home"><div class="text-dark">Главная</div></a>
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="navbar-nav">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="nav-item ms-1 my-1">
+                                        <a id="Personal" class="btn btn-lg btn-outline-light " asp-action="Personal" asp-controller="Account"><div class="text-dark">Личный кабинет</div></a>
+                                    </li>
+                                    if (User.IsInRole("regular user"))
+                                    {
+                                        <li class="nav-item ms-1 my-1">
+                                            <a id="SavedList" class="btn btn-lg btn-outline-primary " asp-action="MySavedList" asp-controller="User"><div class="text-dark">Избранное</div></a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li class="nav-item ms-1 my-1">
+                                        <a id="Log" class="btn btn-lg btn-outline-light " asp-action="Login" asp-controller="Account"><div class="text-dark">Вход</div></a>
+                                    </li>
+                                    <li class="nav-item ms-1 my-1">
+                                        <a class="btn btn-lg btn-outline-light " asp-action="Register" asp-controller="Account"><div class="text-dark">Регистрация</div></a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-2"> </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                    <div class="footer-contacts">
+						<div class="footer-feedback">
+							<div class="icon">
+								<a href="call">
+									<img src="https://sun9-57.userapi.com/impf/VJi_j2S2C4hUtD5GQPDcB53tRjd4pHaRThgqKA/z8HJqsA7-CU.jpg?size=30x30&quality=90&proxy=1&sign=d8d9c0dcfff10b5d5972422ad52f29bf">
+								</a>
+							</div>
+							<div class="number">
+								<h5>
+									<span>+7 (8422) 33-33-33</span>
+								</h5>
+							</div>
+						</div>
+	                    <hr>
+						<div class="footer-media">
+	                        <a href="https://vk.com/" class="media__circle-href">
+	                            <img src="~/images/vk_icon.svg">
+	                        </a>
+	                        <a href="https://instagram.com/" class="media__circle-href">
+	                            <img src="~/images/instagram_icon.svg">
+	                        </a>
+	                        <a href="https://facebook.com/" class="media__circle-href">
+	                            <img src="~/images/facebook_icon.svg">
+	                        </a>
+	                    </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

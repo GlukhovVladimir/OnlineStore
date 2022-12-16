@@ -1,0 +1,34 @@
+﻿@using DataAccessLogic.DatabaseModels;
+@using DataAccessLogic.HelperServices;
+
+@model ItemViewModel
+
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+@addTagHelper *, WebApplicationTechSale
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-lg-2">
+    @foreach (Item item in Model.Item)
+    {
+        <div class="col">
+            <div class="card h-100   item-card">
+                <a><img src="@item.PhotoSrc" class="card-img-top item-card-img list-lot " alt="..."></a>
+                <div class="card-body">
+                    <a id ="namemod" class="auction-link" asp-action="CheckItem" asp-controller="Moderator" asp-route-id="@item.Id">
+                        <h5 class="card-title">@item.Name</h5>
+                    </a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Продавец: @item.User.UserName</li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.Item.Count() > 0)
+{
+    <pagination page-model="@Model.PageViewModel" page-action="Item" page-controller="Moderator"></pagination>
+}

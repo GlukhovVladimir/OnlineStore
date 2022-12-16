@@ -1,0 +1,99 @@
+﻿@using DataAccessLogic.DatabaseModels;
+@using DataAccessLogic.HelperServices;
+
+@model WebApplicationTechSale.Models.PersonalAccountViewModel
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+@addTagHelper *, WebApplicationTechSale
+
+<div class="row justify-content-center my-lg-2 pt-lg-3">
+    <div class="col-lg-5 col-xl-4 mb-2">
+        <h5 class="mb-4">Управление учетной записью:</h5>
+        @if (User.IsInRole("regular user"))
+        {
+            <p>
+                <a asp-action="Update" asp-controller="Account" id="update" class="btn btn-lg btn-primary d-block ">Изменить учетные данные</a>
+            </p>
+            <p>
+                <a id="MyOrders" asp-action="MyOrders" asp-controller="Account" class="btn btn-lg btn-primary d-block ">Мои покупки</a>
+            </p>            
+        }
+        <p>
+            <a id="ChangePassword" asp-action="ChangePassword" asp-controller="Account" class="btn btn-lg btn-primary d-block ">Изменить пароль</a>
+        </p>
+        <form method="post" asp-action="Logout" asp-controller="Account">
+            <div class="d-grid">
+                <button type="submit" id="Quit" class="btn btn-lg btn-danger ">Выйти из учетной записи</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-7 col-xl-8 mb-2">
+        <h5 class="mb-4 mt-4 mt-lg-0">Данные учетной записи:</h5>
+        <div class="row mt-2">
+            <div class="col-md-4 col-lg-5 d-flex align-items-center">
+                <h6>Имя пользователя</h6>
+            </div>
+            <div class="col-md-8 col-lg-7">
+                <input class="form-control form-control-lg " type="text" placeholder="@Model.UserName" disabled>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-5 col-lg-6 col-xl-5 d-flex align-items-center">
+                <h6>Адрес электронной почты</h6>
+            </div>
+            <div class="col-md-7 col-lg-6 col-xl-7">
+                <input class="form-control form-control-lg " type="text" placeholder="@Model.Email" disabled>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.PersonalItemList.Item.Count() > 0)
+{
+    <div class="row justify-content-center my-2">
+        <div class="col">
+            <h5>Список товаров:</h5>
+        </div>
+    </div>
+    <div class="row justify-content-center my-2">
+        <div class="col-md-6 col-lg-4">
+            <p>
+                <a asp-action="CreateItem" asp-controller="User" id="addItem" class="btn btn-lg btn-primary d-block ">+ Новый товар</a>
+            </p>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (Item item in Model.PersonalItemList.Item)
+        {
+            if (item.Status == ItemStatusProvider.GetAcceptedStatus())
+            {
+                await Html.RenderPartialAsync("AcceptedItem", item);
+            }
+            if (item.Status == ItemStatusProvider.GetOnModerationStatus())
+            {
+                await Html.RenderPartialAsync("ItemOnModeration", item);
+            }
+            if (item.Status == ItemStatusProvider.GetRejectedStatus())
+            {
+                await Html.RenderPartialAsync("RejectedItem", item);
+            }
+            if (item.Status == ItemStatusProvider.GetSoldStatus())
+            {
+                await Html.RenderPartialAsync("SoldItem", item);
+            }
+        }
+    </div>
+    <pagination page-model="@Model.PersonalItemList.PageViewModel" page-action="Personal" page-controller="Account"></pagination>
+}
+else if (User.IsInRole("regular user"))
+{
+    <div class="row justify-content-center my-2">
+        <div class="col-md-6 col-lg-4">
+            <p>
+                <a asp-action="CreateItem" asp-controller="User" id="addItem" class="btn btn-lg btn-primary d-block ">Создайте свой первый товар</a>
+            </p>
+        </div>
+    </div>
+}

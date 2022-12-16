@@ -1,0 +1,21 @@
+﻿@using DataAccessLogic.DatabaseModels;
+
+@model ItemViewModel
+
+@{
+    ViewData["Title"] = "Список товаров";
+}
+
+@addTagHelper *, WebApplicationTechSale
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-lg-2">
+    @foreach (Item item in Model.Item)
+    {
+        await Html.RenderPartialAsync("ActiveItem", item);        
+    }
+</div>
+
+@if (Model.Item.Count() > 0)
+{
+    <pagination page-model="@Model.PageViewModel" page-action="Item" page-controller="Home"></pagination>
+}

@@ -1,0 +1,87 @@
+﻿@model ItemModerationModel
+
+@{
+    ViewData["Title"] = "Выбранный товар";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card item-card mt-lg-3 ">
+            <div class="card-body">
+                <p class="card-title text-center h4 mb-4">Внимательно проверьте все данные!</p>
+                <p class="card-text">Если все поля заполнены корректно и&nbsp;соответствуют правилам размещения товара, нажмите кнопку &laquo;Опубликовать&raquo;</p>
+                <p class="card-text">Если хотя&nbsp;бы одно из&nbsp;полей не&nbsp;соответствует правилам размещения товара, нажмите кнопку &laquo;Отклонить&raquo;</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text">
+                            <p class="h5">Название:</p>
+                            <p class="mb-0">@Model.Item.Name</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="card-text">
+                            <p class="h5">Описание товара:</p>
+                            <p class="mb-0">@Model.Item.Description</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="card-text">
+                            <p class="h5">Фотография товара:</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <img src="@Model.Item.PhotoSrc" class="card-img-bottom item-card-checking " alt="...">
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center my-2">
+    <div class="col-md-8 mb-2">
+        <form method="post" asp-action="AcceptItem" asp-controller="Moderator" asp-route-id="@Model.Item.Id">
+            <div class="d-grid">
+                <button id="accepted" type="submit" class="btn btn-lg btn-success ">Опубликовать</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8 mb-2">
+        <a class="btn btn-lg btn-danger d-block " id="reject" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="@Model.Expanded.ToString().ToLower()" aria-controls="collapseExample">Отклонить</a>
+        @if (Model.Expanded)
+        {
+            <div class="collapse my-3 show" id="collapseExample">
+                <form method="post" asp-action="RejectItem" asp-controller="Moderator">
+                    <div class="mb-3" asp-validation-summary="All"></div>
+                    <div class="mb-3">
+                        <input name="model.Item.Id" value="@Model.Item.Id" hidden />
+                        <input name="model.Item.Name" value="@Model.Item.Name" hidden />
+                        <input name="model.Item.Description" value="@Model.Item.Description" hidden />
+                        <input name="model.Item.PhotoSrc" value="@Model.Item.PhotoSrc" hidden />
+                        <label for="#note" class="form-label h5">Укажите причину:</label>
+                        <textarea name="model.RejectNote" id="note" class="form-control " rows="3"></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg btn-danger ">Подтвердить</button>
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="collapse my-3" id="collapseExample">
+                <form method="post" asp-action="RejectItem" asp-controller="Moderator">
+                    <div class="mb-3" asp-validation-summary="All"></div>
+                    <div class="mb-3">
+                        <input name="model.Item.Id" value="@Model.Item.Id" hidden />
+                        <input name="model.Item.Name" value="@Model.Item.Name" hidden />
+                        <input name="model.Item.Description" value="@Model.Item.Description" hidden />
+                        <input name="model.Item.PhotoSrc" value="@Model.Item.PhotoSrc" hidden />
+                        <label for="#note" class="form-label h5">Укажите причину:</label>
+                        <textarea name="model.RejectNote" id="note" class="form-control " rows="3"></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg btn-danger ">Подтвердить</button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>
